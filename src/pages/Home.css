@@ -1,0 +1,16 @@
+.Navigator { 
+    width: 100%;
+  }
+  
+  .mainform { 
+    margin-left: 10%; 
+    margin-right: 10%;
+    width: 25%;
+    align-self: center; 
+    margin-top: 7%;
+    margin-bottom: 8%;
+  }
+  
+  .formstyle {
+    align-self: center;
+  }

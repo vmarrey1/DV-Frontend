@@ -1,0 +1,57 @@
+/* Custom Navbar styles */
+.custom-navbar {
+  background: linear-gradient(45deg, #007bff, #0056b3); /* Gradient background */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+.brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav-link {
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+.login-link {
+  background-color: transparent;
+  color: #f8f9fa;
+}
+
+.signup-link {
+  background-color: #28a745;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 15px;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.signup-link:hover {
+  background-color: #218838;
+}
+
+.navbar-toggler {
+  border-color: #fff;
+}
+
+.navbar-toggler-icon {
+  background-color: #fff;
+}
+
+@media (max-width: 992px) {
+  .navbar-toggler {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}

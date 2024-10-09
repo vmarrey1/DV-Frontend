@@ -1,0 +1,10 @@
+.App { 
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.mydropdowns { 
+  margin-top: 1%; 
+  border-radius: 25px;
+}
