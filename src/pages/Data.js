@@ -28,6 +28,7 @@ function Data() {
     const gettingHeader = async () => {
       try {
         const response = await axios.get("https://54.219.131.177/getHeader");
+        console.log(response.data);
         setHeader(response.data); // Assuming response.data is an array of column names
       } catch (error) {
         console.error('Error fetching columns', error);
