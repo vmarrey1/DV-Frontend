@@ -13,7 +13,7 @@ function Data() {
   useEffect(() => {
     const gettingData = async () => {
       try {
-        const response = await axios.get("http://54.219.131.177/getData");
+        const response = await axios.get("https://54.219.131.177/getData");
         console.log(response.data); 
         setData(response.data); // 
       } catch (error) {
@@ -27,7 +27,7 @@ function Data() {
   useEffect(() => {
     const gettingHeader = async () => {
       try {
-        const response = await axios.get("http://54.219.131.177/getHeader");
+        const response = await axios.get("https://54.219.131.177/getHeader");
         setHeader(response.data); // Assuming response.data is an array of column names
       } catch (error) {
         console.error('Error fetching columns', error);
