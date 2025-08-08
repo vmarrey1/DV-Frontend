@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Remove static export for Vercel deployment
-  images: {
-    unoptimized: true
-  }
+  // Standard Next.js config for Vercel
 }
 
 module.exports = nextConfig
