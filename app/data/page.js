@@ -26,16 +26,32 @@ export default function DataPage() {
     const fetchData = async () => {
       try {
         setLoading(true)
+        setError(null)
+        
         const [dataResponse, columnsResponse] = await Promise.all([
-          axios.get('https://54.219.131.177/getData'),
-          axios.get('https://54.219.131.177/getHeader')
+          axios.get('http://127.0.0.1:5000/getData'),
+          axios.get('http://127.0.0.1:5000/getHeader')
         ])
         
-        setData(dataResponse.data)
-        setColumns(columnsResponse.data)
-        setError(null)
+        // Validate that we have proper data
+        if (dataResponse.data && Array.isArray(dataResponse.data)) {
+          setData(dataResponse.data)
+        } else {
+          console.warn('Data format issue:', dataResponse.data)
+          setData([])
+        }
+        
+        if (columnsResponse.data && Array.isArray(columnsResponse.data)) {
+          setColumns(columnsResponse.data)
+        } else {
+          console.warn('Columns format issue:', columnsResponse.data)
+          setColumns([])
+        }
+        
       } catch (err) {
         console.error('Error fetching data:', err)
+        setData([])
+        setColumns([])
         setError('Failed to load data. Please try uploading a file first.')
       } finally {
         setLoading(false)
@@ -46,6 +62,14 @@ export default function DataPage() {
   }, [])
 
   const renderVisualization = () => {
+    if (!data || !columns || data.length === 0 || columns.length === 0) {
+      return (
+        <div className="text-center py-8">
+          <p className="text-gray-600">No data available for visualization</p>
+        </div>
+      )
+    }
+    
     switch (selectedVisualization) {
       case 'table':
         return <DataTable data={data} columns={columns} />
@@ -138,25 +162,25 @@ export default function DataPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="card">
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary-600">{data.length}</div>
+                <div className="text-2xl font-bold text-primary-600">{data ? data.length : 0}</div>
                 <div className="text-sm text-gray-600">Total Rows</div>
               </div>
             </div>
             <div className="card">
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary-600">{columns.length}</div>
+                <div className="text-2xl font-bold text-primary-600">{columns ? columns.length : 0}</div>
                 <div className="text-sm text-gray-600">Total Columns</div>
               </div>
             </div>
             <div className="card">
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary-600">
-                  {columns.filter(col => 
+                  {data && columns ? columns.filter(col => 
                     data.some(row => {
                       const value = parseFloat(row[col])
                       return !isNaN(value)
                     })
-                  ).length}
+                  ).length : 0}
                 </div>
                 <div className="text-sm text-gray-600">Numeric Columns</div>
               </div>

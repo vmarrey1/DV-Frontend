@@ -156,7 +156,7 @@ export default function Histogram({ data, columns }) {
             >
               {availableColumns.map((column) => (
                 <option key={column} value={column}>
-                  {column}
+                  {column} (numeric)
                 </option>
               ))}
             </select>

@@ -1,6 +1,7 @@
 import NavigationBar from '../components/NavigationBar'
 import FileUpload from '../components/FileUpload'
 import FeatureCards from '../components/FeatureCards'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -18,6 +19,20 @@ export default function Home() {
             Upload your data and explore it with powerful visualization tools. 
             Create scatter plots, histograms, and interactive tables with ease.
           </p>
+          <div className="flex justify-center space-x-4">
+            <Link
+              href="/pricing"
+              className="bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors duration-200"
+            >
+              Get Started
+            </Link>
+            <Link
+              href="/data"
+              className="border border-primary-600 text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors duration-200"
+            >
+              Try Demo
+            </Link>
+          </div>
         </div>
 
         {/* File Upload Section */}

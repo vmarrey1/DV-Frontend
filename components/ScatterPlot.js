@@ -29,16 +29,27 @@ export default function ScatterPlot({ data, columns }) {
   const [selectedX, setSelectedX] = useState('')
   const [selectedY, setSelectedY] = useState('')
   const [availableColumns, setAvailableColumns] = useState([])
+  const [numericColumns, setNumericColumns] = useState([])
 
   useEffect(() => {
     if (columns && columns.length > 0) {
       setAvailableColumns(columns)
+      
+      // Identify numeric columns
+      const numeric = columns.filter(col => 
+        data && data.some(row => {
+          const value = parseFloat(row[col])
+          return !isNaN(value)
+        })
+      )
+      setNumericColumns(numeric)
+      
       if (columns.length >= 2) {
         setSelectedX(columns[0])
         setSelectedY(columns[1])
       }
     }
-  }, [columns])
+  }, [columns, data])
 
   useEffect(() => {
     if (data && data.length > 0 && selectedX && selectedY) {
@@ -144,7 +155,7 @@ export default function ScatterPlot({ data, columns }) {
             >
               {availableColumns.map((column) => (
                 <option key={column} value={column}>
-                  {column}
+                  {column}{numericColumns.includes(column) ? ' (numeric)' : ''}
                 </option>
               ))}
             </select>
@@ -160,7 +171,7 @@ export default function ScatterPlot({ data, columns }) {
             >
               {availableColumns.map((column) => (
                 <option key={column} value={column}>
-                  {column}
+                  {column}{numericColumns.includes(column) ? ' (numeric)' : ''}
                 </option>
               ))}
             </select>

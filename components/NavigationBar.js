@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { BarChart3, Upload, Home } from 'lucide-react'
+import { BarChart3, Upload, Home, CreditCard } from 'lucide-react'
 
 export default function NavigationBar() {
   const pathname = usePathname()
@@ -11,6 +11,7 @@ export default function NavigationBar() {
   const navItems = [
     { name: 'Home', href: '/', icon: Home },
     { name: 'Data', href: '/data', icon: BarChart3 },
+    { name: 'Pricing', href: '/pricing', icon: CreditCard },
   ]
 
   return (
